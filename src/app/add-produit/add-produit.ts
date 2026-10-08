@@ -1,26 +1,23 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ProduitService } from '../services/produit';
+import { Produit } from '../model/produit.model';
+import { ProduitService } from '../services/produit.service';
 
 @Component({
   selector: 'app-add-produit',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './add-produit.html',
-  styleUrl: './add-produit.css',
+  styles: ``
 })
-export class AddProduit {
-  private produitService = inject(ProduitService);
-  private router = inject(Router);
+export class AddProduit implements OnInit {
+  newProduit = new Produit();
 
-  nom: string = "";
+  constructor(private produitService: ProduitService) { }
 
-  ajouterProduit(): void {
-    if (this.nom.trim() === "") {
-      return;
-    }
-    this.produitService.ajouter(this.nom.trim());
-    this.nom = "";
-    this.router.navigate(['/produits']);
+  ngOnInit(): void {}
+
+  addProduit() {
+    this.produitService.ajouterProduit(this.newProduit);
   }
 }
