@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Liste de Produits</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (produit of produits; track produit) {
+            <tr>
+              <td>{{ produit }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
